@@ -19,5 +19,6 @@
             </intent-filter>
         </activity>
     </application>
-
+    <!-- permissions-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
