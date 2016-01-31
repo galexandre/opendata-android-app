@@ -12,10 +12,44 @@
     tools:context="project.galexandre.fr.opendata_android_app.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <!--<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        android:id="@+id/textView" />
+        android:id="@+id/textView" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/id"
+        android:text="@string/id"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_value"
+        android:text="@string/id_value"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/address"
+        android:text="@string/address"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@+id/id" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/address_value"
+        android:text="@string/address_value"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/address"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_toRightOf="@+id/id_value"/>
+
 
 </RelativeLayout>
