@@ -1,22 +1,9 @@
 package project.galexandre.fr.opendata_android_app;
 
-import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import project.galexandre.fr.opendata_android_app.model.Station;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
     }
 
     @Override
