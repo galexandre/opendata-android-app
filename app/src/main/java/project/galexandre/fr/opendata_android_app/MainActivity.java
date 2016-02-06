@@ -11,6 +11,10 @@ import android.widget.TextView;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import project.galexandre.fr.opendata_android_app.model.Gas;
 import project.galexandre.fr.opendata_android_app.model.Station;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         Log.d("Debug","On start");
-        new HttpRequestTask();
+        new HttpRequestTask().execute();
     }
 
     @Override
@@ -62,29 +66,38 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class HttpRequestTask extends AsyncTask<Void,Void,Station>{
+    private class HttpRequestTask extends AsyncTask<Void, Void, List<Station>> {
 
         @Override
-        protected Station doInBackground(Void... params) {
+        protected List<Station> doInBackground(Void... params) {
+            Log.d("Debug","hi");
             try{
                 final String url="https://warm-headland-98018.herokuapp.com/stations";
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                Station station = restTemplate.getForObject(url,Station.class);
-                Log.d("Debug","Station:"+station);
-                return station;
+                List<Station> stations = (List<Station>) restTemplate.getForObject(url,Station.class);
+                Log.d("Debug","Station:"+stations);
+                return stations;
             }catch (Exception e){
                 Log.e("Error",e.getMessage(),e);
             }
-            return null;
+            List<Station> sts = new ArrayList<>();
+            List<String> services = new ArrayList<>();
+            services.add("");
+            List<Gas> gas = new ArrayList<>();
+            gas.add(new Gas("a gas", (float) 0));
+            sts.add(new Station("a name","id",0,0,"an address","a city","a cp","open",services,gas));
+            return sts;
 
         }
-
-        protected void onPostExecute(Station station){
+        @Override
+        protected void onPostExecute(List<Station> stations){
+            Log.d("Debug","stat to put value on the fields");
             TextView textViewIdValue = (TextView) findViewById(R.id.id_value);
             TextView textViewAddressValue = (TextView) findViewById(R.id.address_value);
-            textViewIdValue.setText(station.getId());
-            textViewAddressValue.setText(station.getAddress()+" "+station.getCp()+" "+station.getCity());
+            textViewIdValue.setText(stations.get(0).getId());
+            textViewAddressValue.setText(stations.get(0).getAddress()+" "+stations.get(0).getCp()+" "+
+                    stations.get(0).getCity());
         }
 
     }
