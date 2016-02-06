@@ -80,15 +80,18 @@ public class MainActivity extends AppCompatActivity {
                 return stations;
             }catch (Exception e){
                 Log.e("Error",e.getMessage(),e);
+                /***********
+                 * CREATE A NEW OBJECT TO DISPLAY SOMETHING
+                 * AND DON'T DISPLAY AN ERROR
+                 ***********/
+                List<Station> sts = new ArrayList<>();
+                List<String> services = new ArrayList<>();
+                services.add("");
+                List<Gas> gas = new ArrayList<>();
+                gas.add(new Gas("a gas", (float) 0));
+                sts.add(new Station("a name", "id", 0, 0, "an address", "a city", "a cp", "open", services, gas));
+                return sts;
             }
-            List<Station> sts = new ArrayList<>();
-            List<String> services = new ArrayList<>();
-            services.add("");
-            List<Gas> gas = new ArrayList<>();
-            gas.add(new Gas("a gas", (float) 0));
-            sts.add(new Station("a name","id",0,0,"an address","a city","a cp","open",services,gas));
-            return sts;
-
         }
         @Override
         protected void onPostExecute(List<Station> stations){
